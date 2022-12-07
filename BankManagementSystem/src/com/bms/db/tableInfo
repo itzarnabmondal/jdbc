@@ -1,0 +1,11 @@
++-------------+---------------+------+-----+---------+-------+
+| Field       | Type          | Null | Key | Default | Extra |
++-------------+---------------+------+-----+---------+-------+
+| accountno   | int           | NO   | PRI | NULL    |       |
+| name        | varchar(30)   | YES  |     | NULL    |       |
+| ph          | decimal(11,0) | YES  |     | NULL    |       |
+| balance     | decimal(10,2) | YES  |     | NULL    |       |
+| pin         | int           | YES  |     | NULL    |       |
+| branch      | varchar(30)   | YES  |     | NULL    |       |
+| accounttype | varchar(30)   | YES  |     | NULL    |       |
++-------------+---------------+------+-----+---------+-------+
