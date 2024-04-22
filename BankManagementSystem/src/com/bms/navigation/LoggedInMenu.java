@@ -13,16 +13,18 @@ public class LoggedInMenu {
         if (CustomerInfo.isIsLoggedIn()) {
 
             System.out.println("""
-                Enter 1 for Check Balance
-                Enter 2 for Deposit Money
-                Enter 3 for Withdraw Money
-                Enter 4 for Transfer Money
-                Enter 5 to view you profile
-                Enter 6 for delete account
-                Enter 0 for go back to main menu
-                """);
+                    Enter 1 for Check Balance
+                    Enter 2 for Deposit Money
+                    Enter 3 for Withdraw Money
+                    Enter 4 for Transfer Money
+                    Enter 5 to view you profile
+                    Enter 6 for delete account
+                    Enter 0 for go back to main menu
+                    """);
 
-            char input = new Scanner(System.in).next().charAt(0);
+            Scanner scanner = new Scanner(System.in);
+            char input = scanner.next().charAt(0);
+            scanner.close();
 
             switch (input) {
                 case '1' -> CheckBalance.checkBalance();
