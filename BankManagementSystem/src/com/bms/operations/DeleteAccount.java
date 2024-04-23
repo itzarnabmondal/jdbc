@@ -2,18 +2,16 @@ package com.bms.operations;
 
 // Importing necessary packages
 import com.bms.db.DbConnection;
-import com.bms.main.Main;
 import com.bms.navigation.LoggedInMenu;
 import com.bms.navigation.MainMenu;
 import com.bms.security.DestroySession;
-import com.bms.security.Login;
 import com.bms.security.Pin;
 import com.bms.security.Security;
+import com.bms.utils.InputManager;
 import com.bms.validation.Captcha;
 import com.bms.validation.FetchHash;
 import com.bms.validation.Validation;
 import java.sql.Statement;
-import java.util.Scanner;
 
 public class DeleteAccount {
 
@@ -40,7 +38,7 @@ public class DeleteAccount {
 
     public static void verify() throws Exception {
         System.out.println("Are you sure ? (Enter 'Y' for YES any other key for NO: )");
-        char input = new Scanner(System.in).next().charAt(0);
+        char input = InputManager.getScanner().next().charAt(0);
         if (input == 'Y' || input == 'y') {
 
             // Calling Captcha
@@ -70,7 +68,7 @@ public class DeleteAccount {
 
         // Taking password input and storing it into a variable
         System.out.println("Enter Your Password to verify it's you: ");
-        CustomerInfo.setPasswordHash(Security.getSha256(new Scanner(System.in).next()));
+        CustomerInfo.setPasswordHash(Security.getSha256(InputManager.getScanner().next()));
 
         // Checking, Password matching or not
         if (CustomerInfo.getPasswordHash().equalsIgnoreCase(FetchHash.fetchPasswordHash(CustomerInfo.getAccountNo()))) {
@@ -116,7 +114,7 @@ public class DeleteAccount {
         }
 
         System.out.println("Enter Your Pin: ");
-        CustomerInfo.setPinHash(Security.getMd5(Security.getBase64(new Scanner(System.in).next())));
+        CustomerInfo.setPinHash(Security.getMd5(Security.getBase64(InputManager.getScanner().next())));
 
         // Matching Pin hash with pin has in database
         if (Pin.verifyPin(CustomerInfo.getPinHash(), CustomerInfo.getAccountNo())) {

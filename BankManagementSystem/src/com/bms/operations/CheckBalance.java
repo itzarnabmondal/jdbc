@@ -7,7 +7,7 @@ import com.bms.security.Login;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-public class CheckBalance {
+public final class CheckBalance {
 
     // Method to print balance of current customer
     public static void checkBalance() throws Exception {

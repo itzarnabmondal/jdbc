@@ -4,10 +4,10 @@ package com.bms.operations;
 import com.bms.db.DbConnection;
 import com.bms.navigation.LoggedInMenu;
 import com.bms.security.Login;
+import com.bms.utils.InputManager;
 import com.bms.validation.Validation;
 import java.sql.Statement;
 import java.util.InputMismatchException;
-import java.util.Scanner;
 
 public class Deposit {
 
@@ -42,7 +42,7 @@ public class Deposit {
 
         // Handling Exception and trying to take input
         try {
-             tempAmount = new Scanner(System.in).nextDouble();
+             tempAmount = InputManager.getScanner().nextDouble();
         }
         catch (InputMismatchException | NumberFormatException e) {
             System.out.println("Amount should be a numeric value!\nPlease try again: ");

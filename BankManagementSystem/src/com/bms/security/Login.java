@@ -3,10 +3,10 @@ package com.bms.security;
 // Importing necessary packages
 import com.bms.navigation.LoggedInMenu;
 import com.bms.operations.CustomerInfo;
+import com.bms.utils.InputManager;
 import com.bms.validation.AccountExistOrNot;
 import com.bms.validation.FetchHash;
 import java.util.InputMismatchException;
-import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -40,7 +40,7 @@ public class Login {
 
         try {
             System.out.println("Enter Your Account No: ");
-            CustomerInfo.setAccountNo(Integer.parseInt(new Scanner(System.in).next()));
+            CustomerInfo.setAccountNo(Integer.parseInt(InputManager.getScanner().next()));
         }
         catch (NumberFormatException e) {
             System.out.println("Wrong Input! Account number can contains number only");
@@ -61,7 +61,7 @@ public class Login {
         System.out.println("Enter your 10 digit phone number: ");
 
         try {
-            tempPhone = new Scanner(System.in).nextLong();
+            tempPhone = InputManager.getScanner().nextLong();
             Matcher m = p.matcher(String.valueOf(tempPhone));
             if (m.matches()) {
                 CustomerInfo.setPhone(tempPhone);
@@ -94,7 +94,7 @@ public class Login {
 
         // Taking password input and storing it into a variable
         System.out.println("Enter Your Password: ");
-        CustomerInfo.setPasswordHash(Security.getSha256(new Scanner(System.in).next()));
+        CustomerInfo.setPasswordHash(Security.getSha256(InputManager.getScanner().next()));
 
         // Checking, Password matching or not
         if (CustomerInfo.getPasswordHash().equalsIgnoreCase(FetchHash.fetchPasswordHash(CustomerInfo.getAccountNo()))) {
@@ -140,7 +140,7 @@ public class Login {
         }
 
         System.out.println("Enter Your Pin: ");
-        CustomerInfo.setPinHash(Security.getMd5(Security.getBase64(new Scanner(System.in).next())));
+        CustomerInfo.setPinHash(Security.getMd5(Security.getBase64(InputManager.getScanner().next())));
 
         // Matching Pin hash with pin has in database
         if (Pin.verifyPin(CustomerInfo.getPinHash(), CustomerInfo.getAccountNo())) {

@@ -3,11 +3,11 @@ package com.bms.security;
 // Importing necessary packages
 import com.bms.operations.CreateAccount;
 import com.bms.operations.CustomerInfo;
+import com.bms.utils.InputManager;
 import com.bms.validation.AccountExistOrNot;
 import com.bms.validation.Captcha;
 import com.bms.validation.FetchHash;
 import java.util.InputMismatchException;
-import java.util.Scanner;
 
 public class ResetPassword {
     private static byte invalidKeyCounter = 0;
@@ -23,7 +23,7 @@ public class ResetPassword {
     public static void enterAccountNo() {
         try {
             System.out.println("Enter Your Account No: ");
-            CustomerInfo.setAccountNo(Integer.parseInt(new Scanner(System.in).next()));
+            CustomerInfo.setAccountNo(Integer.parseInt(InputManager.getScanner().next()));
         } catch (NumberFormatException e) {
             System.out.println("Wrong Input! Account number can contains number only");
             enterAccountNo();
@@ -33,7 +33,7 @@ public class ResetPassword {
     public static void enterPhoneNumber() {
         System.out.println("Enter Registered phone number: ");
         try {
-            CustomerInfo.setPhone(new Scanner(System.in).nextLong());
+            CustomerInfo.setPhone(InputManager.getScanner().nextLong());
         }catch (InputMismatchException | NumberFormatException e) {
             System.out.println("Wrong Input! Enter your 10 digit phone number: ");
             enterPhoneNumber();
@@ -54,7 +54,7 @@ public class ResetPassword {
 
     public static void enterRecoveryKey() throws Exception {
         System.out.println("Enter 32 characters recovery key: ");
-        CustomerInfo.setRecoveryKeyHash(Security.getSha256(new Scanner(System.in).next()));
+        CustomerInfo.setRecoveryKeyHash(Security.getSha256(InputManager.getScanner().next()));
         if (CustomerInfo.getRecoveryKeyHash().equalsIgnoreCase(FetchHash.fetchRecoveryKeyHash(CustomerInfo.getAccountNo()))) {
             CreateAccount.enterPassword();
             // Updating passwordhash in database

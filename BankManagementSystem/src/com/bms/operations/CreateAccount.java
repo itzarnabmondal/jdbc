@@ -4,10 +4,10 @@ package com.bms.operations;
 import com.bms.db.DbConnection;
 import com.bms.security.*;
 import com.bms.security.RecoveryKey;
+import com.bms.utils.InputManager;
 import com.bms.validation.Validation;
 import java.sql.PreparedStatement;
 import java.util.Random;
-import java.util.Scanner;
 
 public class CreateAccount {
 
@@ -52,7 +52,7 @@ public class CreateAccount {
                 If yes enter Y else enter any other character
                 """);
 
-        input = new Scanner(System.in).next().charAt(0);
+        input = InputManager.getScanner().next().charAt(0);
 
         // Checking customer wants to create pin or not
         if (input == 'Y' || input == 'y') {
@@ -94,7 +94,7 @@ public class CreateAccount {
 
         // Pausing screen
         System.out.println("Please Enter any key to continue :) ");
-        char tempEntry = new Scanner(System.in).next().charAt(0);
+        char tempEntry = InputManager.getScanner().next().charAt(0);
 
         // Destroying session and telling user to login
         DestroySession.destroy();
@@ -105,7 +105,7 @@ public class CreateAccount {
     // Enter name method
     public static void enterName() {
         System.out.println("Enter your full name: ");
-        Validation.nameValidation(new Scanner(System.in).nextLine());
+        Validation.nameValidation(InputManager.getScanner().nextLine());
     }
 
     // Select Branch Method
@@ -122,7 +122,7 @@ public class CreateAccount {
                 Enter 0 for close this program
                 """);
 
-        input = new Scanner(System.in).next().charAt(0);
+    input = InputManager.getScanner().next().charAt(0);
 
         // Switch case for selecting
         switch (input) {
@@ -149,7 +149,7 @@ public class CreateAccount {
                 Enter 4 for Fixed deposit account
                 """);
 
-        input = new Scanner(System.in).next().charAt(0);
+                input = InputManager.getScanner().next().charAt(0);
 
         // Switch case for selecting
         switch (input) {
@@ -169,7 +169,7 @@ public class CreateAccount {
 
         System.out.println("Enter your 10 digit phone number: ");
         // Passing input into phone validation method
-        Validation.phoneValidation(new Scanner(System.in).next());
+        Validation.phoneValidation(InputManager.getScanner().next());
     }
 
     // Enter password method
@@ -184,7 +184,7 @@ public class CreateAccount {
                 """);
 
         // Taking user input and passing into takeInput method of password class
-        Password.takeInput(new Scanner(System.in).next());
+        Password.takeInput(InputManager.getScanner().next());
     }
 
     // Enter PIN Method
@@ -197,6 +197,6 @@ public class CreateAccount {
         System.out.println("Enter your Pin");
 
         // Passing pin into take input method of pin class
-        Pin.takeInput(new Scanner(System.in).next());
+        Pin.takeInput(InputManager.getScanner().next());
     }
 }

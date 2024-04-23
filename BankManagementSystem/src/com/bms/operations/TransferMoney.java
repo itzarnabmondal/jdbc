@@ -3,12 +3,12 @@ package com.bms.operations;
 // Importing necessary packages
 import com.bms.db.DbConnection;
 import com.bms.security.Login;
+import com.bms.utils.InputManager;
 import com.bms.validation.AccountExistOrNot;
 import com.bms.validation.Captcha;
 import com.bms.validation.Validation;
 import java.sql.Statement;
 import java.util.InputMismatchException;
-import java.util.Scanner;
 
 public class TransferMoney {
 
@@ -33,11 +33,10 @@ public class TransferMoney {
 
     private static void takeReceiverDetails() throws Exception {
 
-        Scanner sc = new Scanner(System.in);
         System.out.println("Enter receiver's account no: ");
 
         try {
-            receiverAccountNo = sc.nextInt();
+            receiverAccountNo = InputManager.getScanner().nextInt();
         }
         catch (InputMismatchException e) {
             System.out.println("Wrong input! Account number is a 8 digits number\nPlease try again: ");
@@ -51,7 +50,7 @@ public class TransferMoney {
         // Taking phone number
         System.out.println("Enter receiver's phone no: ");
         try {
-            receiverPhoneNumber = sc.nextLong();
+            receiverPhoneNumber = InputManager.getScanner().nextLong();
         }
         catch (InputMismatchException e) {
             System.out.println("Wrong input! Enter 10 digits phone number\nPlease try again: ");
@@ -88,10 +87,10 @@ public class TransferMoney {
 
     // Enter amount method
     private static void enterAmount() throws Exception {
-        Scanner sc = new Scanner(System.in);
+        
         System.out.println("Enter the amount you want to withdraw: ");
         try {
-            transferAmount = sc.nextDouble();
+            transferAmount = InputManager.getScanner().nextDouble();
         }
         catch (NumberFormatException e) {
             System.out.println("Amount should be a numeric value!\nPlease try again: ");
@@ -101,7 +100,7 @@ public class TransferMoney {
             System.out.println("Oh No! Something wrong happened,\nPlease try again: ");
             enterAmount();
         }
-        sc.close();
+        
 
         // calling transfer
         transfer();

@@ -2,7 +2,8 @@ package com.bms.validation;
 
 // Importing necessary packages
 import java.util.Random;
-import java.util.Scanner;
+
+import com.bms.utils.InputManager;
 
 public class Captcha {
 
@@ -24,7 +25,7 @@ public class Captcha {
 
         // Handling exception
         try {
-            input = new Scanner(System.in).nextInt();
+            input = InputManager.getScanner().nextInt();
         } catch (Exception e) {
             System.out.println("Wrong Input!\nPlease try again: ");
             captcha();

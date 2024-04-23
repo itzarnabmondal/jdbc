@@ -3,8 +3,7 @@ package com.bms.navigation;
 // Importing necessary packages
 import com.bms.operations.*;
 import com.bms.security.DestroySession;
-
-import java.util.Scanner;
+import com.bms.utils.InputManager;
 
 public class LoggedInMenu {
 
@@ -22,9 +21,7 @@ public class LoggedInMenu {
                     Enter 0 for go back to main menu
                     """);
 
-            Scanner scanner = new Scanner(System.in);
-            char input = scanner.next().charAt(0);
-            scanner.close();
+            char input = InputManager.getScanner().next().charAt(0);
 
             switch (input) {
                 case '1' -> CheckBalance.checkBalance();

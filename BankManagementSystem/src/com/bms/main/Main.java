@@ -1,13 +1,18 @@
 package com.bms.main;
 
 import com.bms.navigation.MainMenu;
+import com.bms.utils.InputManager;
 
 public class Main {
 
     // Main Method
     public static void main(String[] args) throws Exception {
-        welcome();
-        MainMenu.mainMenu();
+
+        InputManager.init(); // Initializing InputManager.
+
+        welcome(); // To show welcome banner.
+
+        MainMenu.mainMenu(); // Navigating to mainMenu
     }
 
     // Welcome method

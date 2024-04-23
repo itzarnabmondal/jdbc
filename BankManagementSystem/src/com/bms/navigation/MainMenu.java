@@ -4,12 +4,10 @@ package com.bms.navigation;
 import com.bms.operations.CreateAccount;
 import com.bms.security.Login;
 import com.bms.security.ResetPassword;
-
-import java.util.Scanner;
+import com.bms.utils.InputManager;
 
 public class MainMenu {
 
-    Scanner scanner;
     public static void mainMenu() throws Exception {
 
         System.out.println("""
@@ -18,9 +16,7 @@ public class MainMenu {
                 Enter 3 for reset password
                 """);
 
-        Scanner scanner = new Scanner(System.in);
-        char input = scanner.next().charAt(0);
-        scanner.close();
+        char input = InputManager.getScanner().next().charAt(0);
 
         switch (input) {
             case '1' -> CreateAccount.createAccount();
