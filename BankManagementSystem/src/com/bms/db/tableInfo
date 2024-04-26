@@ -1,3 +1,5 @@
+\* This file is not necessary for application functionality; it serves solely to provide an overview of the table structure. */
+
 +-------------+---------------+------+-----+---------+-------+
 | Field       | Type          | Null | Key | Default | Extra |
 +-------------+---------------+------+-----+---------+-------+
